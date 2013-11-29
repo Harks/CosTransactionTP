@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import RessourceMetier.*;
 import Interface.*;
 public class SeatAvailable extends UnicastRemoteObject implements IAvailableseat {
@@ -14,6 +15,12 @@ public class SeatAvailable extends UnicastRemoteObject implements IAvailableseat
 	@Override
 	public void showinfo(String msg) throws RemoteException {
 		System.out.println(msg+"\r\nCatch by Biblio");
+	}
+
+	@Override
+	public ArrayList<Seat> getAvailableSeat() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

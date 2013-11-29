@@ -6,7 +6,7 @@ import Interface.*;
 public class ClientProx {
 
 	public static void main(String[] args) throws RemoteException {
-		IAvailableseat biblio = (IAvailableseat) Proxy.newProxyInstance(IAvailableseat.class.getClassLoader(),new Class[] {IAvailableseat.class}, new AvailableHandler());
+		IAvailableseat biblio = (IAvailableseat) Proxy.newProxyInstance(IAvailableseat.class.getClassLoader(),new Class[] {IAvailableseat.class}, new InterceptorHandler());
 		String msg ="Send by ClientProx";
 		biblio.showinfo(msg);
 	}
