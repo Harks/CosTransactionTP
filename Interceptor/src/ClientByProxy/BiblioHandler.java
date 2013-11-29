@@ -11,7 +11,6 @@ public class BiblioHandler implements InvocationHandler{
 		theBiblio = new Biblio();
 		String msg = arg2[0]+"\r\nCatch by CustomerHandler";
 		theBiblio.showinfo(msg);
-		
 		return null;
 	}
 
