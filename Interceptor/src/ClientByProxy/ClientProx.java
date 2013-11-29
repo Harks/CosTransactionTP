@@ -2,8 +2,6 @@ package ClientByProxy;
 import java.lang.reflect.Proxy;
 import java.rmi.RemoteException;
 import CosTransaction.*;
-import LockerSeat.*;
-import SideBySideSeat.*;
 import Interface.*;
 public class ClientProx {
 
