@@ -1,13 +1,13 @@
-package ServeurBiblio;
+package AvailableSeat;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import RessourceMetier.*;
 import Interface.*;
-public class Biblio extends UnicastRemoteObject implements IBiblio {
-	public Biblio() throws RemoteException {
+public class SeatAvailable extends UnicastRemoteObject implements IAvailableseat {
+	public SeatAvailable() throws RemoteException {
 		super();
 	}
 
@@ -15,5 +15,5 @@ public class Biblio extends UnicastRemoteObject implements IBiblio {
 	public void showinfo(String msg) throws RemoteException {
 		System.out.println(msg+"\r\nCatch by Biblio");
 	}
-
+	
 }

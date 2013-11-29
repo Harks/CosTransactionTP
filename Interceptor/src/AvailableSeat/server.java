@@ -1,4 +1,4 @@
-package ServeurBiblio;
+package AvailableSeat;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
@@ -11,7 +11,7 @@ public class server {
 
 	public static void main(String[] args) throws RemoteException, MalformedURLException, UnknownHostException {
 		LocateRegistry.createRegistry(1099);
-		IBiblio biblio= new Biblio();
+		IAvailableseat biblio= new SeatAvailable();
 		Naming.rebind("rmi://"+InetAddress.getLocalHost()+"/Bibliotheque", biblio);
 
 	}
