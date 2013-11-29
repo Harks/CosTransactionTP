@@ -2,8 +2,7 @@ package SideBySideSeat;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import RessourceMetier.*;
-import Interface.*;
+import common.*;
 public class SideBySide implements ISideBySide{
 
 	@Override

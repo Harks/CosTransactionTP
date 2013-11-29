@@ -1,5 +1,4 @@
-package Interface;
-import RessourceMetier.*;
+package common;
 
 import java.rmi.*;
 import java.util.ArrayList;

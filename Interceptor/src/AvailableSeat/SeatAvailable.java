@@ -5,8 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import RessourceMetier.*;
-import Interface.*;
+import common.*;
 public class SeatAvailable extends UnicastRemoteObject implements IAvailableseat {
 	public SeatAvailable() throws RemoteException {
 		super();

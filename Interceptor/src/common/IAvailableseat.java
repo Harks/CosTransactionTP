@@ -1,9 +1,7 @@
-package Interface;
+package common;
 
 import java.rmi.*;
 import java.util.ArrayList;
-
-import RessourceMetier.*;
 
 public interface IAvailableseat extends Remote {
 		public void showinfo(String msg)throws RemoteException;

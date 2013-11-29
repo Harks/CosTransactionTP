@@ -6,7 +6,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
-import Interface.*;
+import common.*;
 public class server {
 
 	public static void main(String[] args) throws RemoteException, MalformedURLException, UnknownHostException {
