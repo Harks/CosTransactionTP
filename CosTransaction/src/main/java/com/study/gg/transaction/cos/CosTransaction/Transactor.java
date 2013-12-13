@@ -26,8 +26,9 @@ public class Transactor {
 		isbeginging = true;
 	}
 
-	public void addRessource(ServiceInterface service){
-		
+	public ServiceInterface addRessource(ServiceInterface service,int id){
+		transactions.put(id, service);
+		return service;
 	}
 	
 	public void commit() {
