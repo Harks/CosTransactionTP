@@ -7,6 +7,8 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+
 
 public class Transactor {
 	private LockerSeatHandler lockhandler;
@@ -16,7 +18,6 @@ public class Transactor {
 	private int currentfreeseat, transactnbseataffect;
 	public void begin() throws MalformedURLException, RemoteException, UnknownHostException, NotBoundException {
 		isbeginging = true;
-		Remote r = Naming.lookup("rmi://"+InetAddress.getLocalHost()+"/SeatAvailable");
 		
 	}
 
