@@ -22,6 +22,7 @@ public class ClientProx {
 		ILockerSeat locks = (ILockerSeat) Proxy.newProxyInstance(ILockerSeat.class.getClassLoader(), new Class[] {ILockerSeat.class},transac.getLockhandler());
 		myseats = locks.lockseats(myseats);
 		transac.commit();
+		System.out.println(myseats);
 	}
 
 }
