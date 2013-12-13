@@ -1,5 +1,8 @@
 package com.study.gg.transaction.Client;
 import java.lang.reflect.Proxy;
+import java.net.MalformedURLException;
+import java.net.UnknownHostException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -8,7 +11,7 @@ import com.study.gg.transaction.cos.CosTransaction.Transactor;
 
 public class ClientProx {
 
-	public static void main(String[] args) throws RemoteException {
+	public static void main(String[] args) throws RemoteException, MalformedURLException, UnknownHostException, NotBoundException {
 		ArrayList<Seat> myseats;
 		Transactor transac = new Transactor();
 		transac.begin();
