@@ -14,7 +14,7 @@ public class SideBySide extends UnicastRemoteObject implements ISideBySide{
 
 	public ArrayList<Seat> lockseats(ArrayList<Seat> seats)
 			throws RemoteException {
-		System.out.println("Received SideBySide Req");
+		System.out.println("Catch Req SideBySide");
 		return null;
 	}
 	

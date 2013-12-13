@@ -14,7 +14,7 @@ public class LockSeat extends UnicastRemoteObject implements ILockerSeat{
 	
 	public ArrayList<Seat> getSideBySideseats(ArrayList<Seat> seats, int nbr)
 			throws RemoteException {
-		System.out.println("Catch Req SideBySide");
+		System.out.println("Catch Req LockSeat");
 		return null;
 	}
 

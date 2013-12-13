@@ -7,11 +7,7 @@ import java.rmi.Naming;
 import java.rmi.Remote;
 import com.study.gg.transaction.Servicescommon.IAvailableseat;
 
-
-
 public class AvailableHandler implements InvocationHandler{
-	
-	IAvailableseat handlerAvailable;
 	
 	public Object invoke(Object arg0, Method arg1, Object[] arg2)
 			throws Throwable {

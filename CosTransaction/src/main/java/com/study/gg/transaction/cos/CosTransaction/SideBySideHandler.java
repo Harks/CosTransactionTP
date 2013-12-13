@@ -5,11 +5,9 @@ import java.lang.reflect.Proxy;
 import java.net.InetAddress;
 import java.rmi.Naming;
 import java.rmi.Remote;
-
 import com.study.gg.transaction.Servicescommon.ISideBySide;
 
 public class SideBySideHandler implements InvocationHandler{
-
 	public Object invoke(Object arg0, Method arg1, Object[] arg2)
 			throws Throwable {
 		System.out.println("Catch by SideBySideHandler :"+arg0.getClass().getSimpleName());
