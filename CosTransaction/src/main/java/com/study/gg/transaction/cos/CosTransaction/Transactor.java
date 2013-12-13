@@ -8,6 +8,10 @@ import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.study.gg.transaction.Servicescommon.*;
 
 public class Transactor {
@@ -16,10 +20,16 @@ public class Transactor {
 	private AvailableHandler availhandler;
 	private boolean isbeginging = false;
 	private int currentfreeseat, transactnbseataffect;
+	private Map<Integer,ServiceInterface> transactions = new HashMap<Integer,ServiceInterface>();
+	
 	public void begin() throws MalformedURLException, RemoteException, UnknownHostException, NotBoundException {
 		isbeginging = true;
 	}
 
+	public void addRessource(ServiceInterface service){
+		
+	}
+	
 	public void commit() {
 		if (isbeginging == true) {
 			currentfreeseat -= transactnbseataffect;

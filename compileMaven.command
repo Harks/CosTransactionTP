@@ -23,5 +23,5 @@ cp target/SideBySideService-0.0.1-SNAPSHOT.jar ../SideBySideService-0.0.1-SNAPSH
 cd ..;
 
 cd LockSeatService;
-cp target/LockSeatService-0.0.1-SNAPSHOT.jar ../LockSeatService-0.0.1-SNAPSHOT.jar
+cp target/LockSeatService-0.0.1-SNAPSHOT.jar ../LockSeatService-0.0.1-SNAPSHOT.jar;
 
