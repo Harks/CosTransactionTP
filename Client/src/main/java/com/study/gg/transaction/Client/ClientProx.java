@@ -13,7 +13,7 @@ public class ClientProx {
 
 	public static void main(String[] args) throws RemoteException, MalformedURLException, UnknownHostException, NotBoundException {
 		ArrayList<Seat> myseats;
-		Transactor transac = new Transactor();
+		Transactor transac = new Transactor(1);
 		transac.begin();
 		IAvailableseat aseat = (IAvailableseat) Proxy.newProxyInstance(IAvailableseat.class.getClassLoader(),new Class[] {IAvailableseat.class}, transac.getAvailhandler());
 		myseats = aseat.getAvailableSeat();
