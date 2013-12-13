@@ -18,8 +18,6 @@ public class Transactor {
 	private int currentfreeseat, transactnbseataffect;
 	public void begin() throws MalformedURLException, RemoteException, UnknownHostException, NotBoundException {
 		isbeginging = true;
-		/*IAvailableseat r = (IAvailableseat)Naming.lookup("rmi://"+InetAddress.getLocalHost()+"/SeatAvailable");
-		currentfreeseat = r.getnbFreeSeat();*/
 	}
 
 	public void commit() {

@@ -1,6 +1,8 @@
 package com.study.gg.transaction.Servicescommon;
 
-public class Seat {
+import java.io.Serializable;
+
+public class Seat implements Serializable{
 	private int id;
 	private boolean isLock =false;
 	public Seat(int num)

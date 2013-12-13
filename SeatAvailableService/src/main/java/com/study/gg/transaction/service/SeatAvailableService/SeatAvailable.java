@@ -9,6 +9,7 @@ public class SeatAvailable extends UnicastRemoteObject implements IAvailableseat
 	private int nbplaces;
 	public SeatAvailable() throws RemoteException {
 		super();
+		System.out.println("Catch Req SeatAvailable SeatAvailable");
 		nbplaces = new Random().nextInt(200-150) + 150;
 	}
 
@@ -18,6 +19,7 @@ public class SeatAvailable extends UnicastRemoteObject implements IAvailableseat
 	}
 
 	public ArrayList<Seat> getAvailableSeat() throws RemoteException {
+		System.out.println("Catch Req SeatAvailable getAvailableSeat");
 		ArrayList<Seat> seats = new ArrayList<Seat>();
 		for(int i = 0;i<15;i++)
 			seats.add(new Seat(i));
