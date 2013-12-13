@@ -1,5 +1,6 @@
 package com.study.gg.transaction.cos.CosTransaction;
 
+import java.lang.reflect.Proxy;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
@@ -20,15 +21,15 @@ public class Transactor {
 	private AvailableHandler availhandler;
 	private boolean isbeginging = false;
 	private int currentfreeseat, transactnbseataffect;
-	private Map<Integer,ServiceInterface> transactions = new HashMap<Integer,ServiceInterface>();
+	private Map<Integer,Class> transactions = new HashMap<Integer,Class>();
 	
 	public void begin() throws MalformedURLException, RemoteException, UnknownHostException, NotBoundException {
 		isbeginging = true;
 	}
 
-	public ServiceInterface addRessource(ServiceInterface service,int id){
+	public ServiceInterface addRessource(Class service,int id){
 		transactions.put(id, service);
-		return service;
+		return (ServiceInterface) Proxy.newProxyInstance(service.getClassLoader(), new Class[] {service},this.getLockhandler());
 	}
 	
 	public void commit() {
