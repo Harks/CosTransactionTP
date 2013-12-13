@@ -3,8 +3,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import com.study.gg.transaction.Servicescommon.ILockerSeat;
-import com.study.gg.transaction.Servicescommon.Seat;
+import com.study.gg.transaction.Servicescommon.*;
 
 public class LockSeat extends UnicastRemoteObject implements ILockerSeat{
 
@@ -12,10 +11,13 @@ public class LockSeat extends UnicastRemoteObject implements ILockerSeat{
 		super();
 	}
 	
-	public ArrayList<Seat> getSideBySideseats(ArrayList<Seat> seats, int nbr)
+	public ArrayList<Seat> lockseats(ArrayList<Seat> seats)
 			throws RemoteException {
-		System.out.println("Catch Req LockSeat");
-		return null;
+		System.out.println("Catch Req SideBySide");
+		for ( Seat s: seats) {
+			s.LockerUnLocker();
+		}
+		return seats;
 	}
 
 

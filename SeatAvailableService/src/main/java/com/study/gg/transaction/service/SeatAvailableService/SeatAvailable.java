@@ -2,12 +2,8 @@ package com.study.gg.transaction.service.SeatAvailableService;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
-
-import com.study.gg.transaction.Servicescommon.IAvailableseat;
-import com.study.gg.transaction.Servicescommon.Seat;
+import java.util.*;
+import com.study.gg.transaction.Servicescommon.*;
 
 public class SeatAvailable extends UnicastRemoteObject implements IAvailableseat {
 	private int nbplaces;
@@ -22,11 +18,13 @@ public class SeatAvailable extends UnicastRemoteObject implements IAvailableseat
 	}
 
 	public ArrayList<Seat> getAvailableSeat() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Seat> seats = new ArrayList<Seat>();
+		for(int i = 0;i<15;i++)
+			seats.add(new Seat(i));
+		return seats;
 	}
 
-	public int getFreeSeat() throws RemoteException {
+	public int getnbFreeSeat() throws RemoteException {
 		return nbplaces;
 	}
 	

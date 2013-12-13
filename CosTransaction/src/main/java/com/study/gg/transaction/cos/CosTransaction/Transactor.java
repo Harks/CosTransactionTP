@@ -8,7 +8,6 @@ public class Transactor {
 	private int currentfreeseat, transactnbseataffect;
 	public void begin() {
 		isbeginging = true;
-		
 	}
 
 	public void commit() {
