@@ -15,11 +15,11 @@ public class ClientProx {
 		ArrayList<Seat> myseats;
 		Transactor transac = new Transactor();
 		transac.begin();
-		IAvailableseat aseat = (IAvailableseat) Proxy.newProxyInstance(IAvailableseat.class.getClassLoader(),new Class[] {IAvailableseat.class}, transac.getAvailhandler());
+		IAvailableseat aseat = (IAvailableseat)transac.addRessource(IAvailableseat.class,0);
+		ISideBySide sides = (ISideBySide)transac.addRessource(ISideBySide.class,0);
+		ILockerSeat locks = (ILockerSeat)transac.addRessource(ILockerSeat.class,0);
 		myseats = aseat.getAvailableSeat();
-		ISideBySide sides =  (ISideBySide) Proxy.newProxyInstance(ISideBySide.class.getClassLoader(), new Class[] {ISideBySide.class},transac.getSidehandler());
 		myseats = sides.getSideBySideseats(myseats, 3);
-		ILockerSeat locks = (ILockerSeat) Proxy.newProxyInstance(ILockerSeat.class.getClassLoader(), new Class[] {ILockerSeat.class},transac.getLockhandler());
 		myseats = locks.lockseats(myseats);
 		transac.commit();
 		System.out.println(myseats);
