@@ -1,17 +1,12 @@
 package com.study.gg.transaction.cos.CosTransaction;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.net.InetAddress;
-import java.net.MalformedURLException;
+import java.net.*;
 import java.net.UnknownHostException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.rmi.*;
+import java.util.*;
 
 import com.study.gg.transaction.Servicescommon.*;
 
@@ -26,11 +21,11 @@ public class Transactor {
 
 	public Transactor(int id) {
 		TransactorManager transactorM = TransactorManager.getInstance();
-		
+
 		this.id = id;
-		
-		//TODO => Don't add the ressource if unecessary
-		transactorM.addTransaction(this, this.id);
+
+		// TODO => Don't add the ressource if unecessary
+		// transactorM.addTransaction(this, this.id);
 	}
 
 	public void begin() throws MalformedURLException, RemoteException,
@@ -46,7 +41,21 @@ public class Transactor {
 
 		return (ServiceInterface) Proxy.newProxyInstance(
 				service.getClassLoader(), new Class[] { service },
-				this.getLockhandler());
+				this.getRightHandler(service));
+	}
+
+	private InvocationHandler getRightHandler(Class service) {
+		if (service.getSimpleName() == "IAvailableseat") {
+			System.out.println(this.getAvailhandler().getClass());
+			return this.getAvailhandler();
+		} else if (service.getSimpleName() == "ILockerSeat") {
+			System.out.println(this.getLockhandler().getClass());
+			return this.getLockhandler();
+		} else if (service.getSimpleName() == "ISideBySide") {
+			System.out.println( this.getSidehandler().getClass());
+			return this.getSidehandler();
+		}
+		return null;
 	}
 
 	public void commit() {

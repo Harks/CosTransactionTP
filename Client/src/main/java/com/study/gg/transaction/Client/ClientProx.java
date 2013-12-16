@@ -15,9 +15,9 @@ public class ClientProx {
 		ArrayList<Seat> myseats;
 		Transactor transac = new Transactor(1);
 		transac.begin();
-		IAvailableseat aseat = (IAvailableseat)transac.addRessource(IAvailableseat.class,0);
-		ISideBySide sides = (ISideBySide)transac.addRessource(ISideBySide.class,0);
-		ILockerSeat locks = (ILockerSeat)transac.addRessource(ILockerSeat.class,0);
+		IAvailableseat aseat = (IAvailableseat)transac.addRessource(IAvailableseat.class);
+		ISideBySide sides = (ISideBySide)transac.addRessource(ISideBySide.class);
+		ILockerSeat locks = (ILockerSeat)transac.addRessource(ILockerSeat.class);
 		myseats = aseat.getAvailableSeat();
 		myseats = sides.getSideBySideseats(myseats, 3);
 		myseats = locks.lockseats(myseats);
