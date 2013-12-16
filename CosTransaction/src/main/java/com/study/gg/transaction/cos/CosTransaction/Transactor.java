@@ -21,17 +21,34 @@ public class Transactor {
 	private AvailableHandler availhandler;
 	private boolean isbeginging = false;
 	private int currentfreeseat, transactnbseataffect;
-	private Map<Integer,Class> transactions = new HashMap<Integer,Class>();
-	
-	public void begin() throws MalformedURLException, RemoteException, UnknownHostException, NotBoundException {
+	private int id;
+	ArrayList<Class> ressources = new ArrayList<Class>();
+
+	public Transactor(int id) {
+		TransactorManager transactorM = TransactorManager.getInstance();
+		
+		this.id = id;
+		
+		//TODO => Don't add the ressource if unecessary
+		transactorM.addTransaction(this, this.id);
+	}
+
+	public void begin() throws MalformedURLException, RemoteException,
+			UnknownHostException, NotBoundException {
 		isbeginging = true;
 	}
 
-	public ServiceInterface addRessource(Class service,int id){
-		transactions.put(id, service);
-		return (ServiceInterface) Proxy.newProxyInstance(service.getClassLoader(), new Class[] {service},this.getLockhandler());
+	public ServiceInterface addRessource(Class service) {
+
+		if (!ressources.contains(service)) {
+			ressources.add(service);
+		}
+
+		return (ServiceInterface) Proxy.newProxyInstance(
+				service.getClassLoader(), new Class[] { service },
+				this.getLockhandler());
 	}
-	
+
 	public void commit() {
 		if (isbeginging == true) {
 			currentfreeseat -= transactnbseataffect;
