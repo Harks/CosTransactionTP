@@ -18,6 +18,7 @@ public class ClientProx {
 		IAvailableseat aseat = (IAvailableseat)transac.addRessource(IAvailableseat.class);
 		ISideBySide sides = (ISideBySide)transac.addRessource(ISideBySide.class);
 		ILockerSeat locks = (ILockerSeat)transac.addRessource(ILockerSeat.class);
+		System.out.println(aseat.getserviceAdresse());
 		myseats = aseat.getAvailableSeat();
 		System.out.println("After AvailableSeat "+myseats);
 		myseats = sides.getSideBySideseats(myseats, 3);
