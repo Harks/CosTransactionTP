@@ -21,7 +21,7 @@ public class SeatAvailable extends UnicastRemoteObject implements IAvailableseat
 	public ArrayList<Seat> getAvailableSeat() throws RemoteException {
 		System.out.println("Catch Req SeatAvailable getAvailableSeat");
 		ArrayList<Seat> seats = new ArrayList<Seat>();
-		for(int i = 0;i<15;i++)
+		for(int i = 1;i<=15;i++)
 			seats.add(new Seat(i));
 		return seats;
 	}

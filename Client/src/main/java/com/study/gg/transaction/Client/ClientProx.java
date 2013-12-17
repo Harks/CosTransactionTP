@@ -19,10 +19,12 @@ public class ClientProx {
 		ISideBySide sides = (ISideBySide)transac.addRessource(ISideBySide.class);
 		ILockerSeat locks = (ILockerSeat)transac.addRessource(ILockerSeat.class);
 		myseats = aseat.getAvailableSeat();
+		System.out.println("After AvailableSeat "+myseats);
 		myseats = sides.getSideBySideseats(myseats, 3);
+		System.out.println("After SideBySideseats "+myseats);
 		myseats = locks.lockseats(myseats);
 		transac.commit();
-		System.out.println(myseats);
+		System.out.println("Final "+myseats);
 	}
 
 }

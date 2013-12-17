@@ -39,23 +39,17 @@ public class Transactor {
 			ressources.add(service);
 		}
 
-		return (ServiceInterface) Proxy.newProxyInstance(
-				service.getClassLoader(), new Class[] { service },
-				this.getRightHandler(service));
+		return getRightHandler(service);
 	}
 
-	private InvocationHandler getRightHandler(Class service) {
-		if (service.getSimpleName() == "IAvailableseat") {
-			System.out.println(this.getAvailhandler().getClass());
-			return this.getAvailhandler();
-		} else if (service.getSimpleName() == "ILockerSeat") {
-			System.out.println(this.getLockhandler().getClass());
-			return this.getLockhandler();
-		} else if (service.getSimpleName() == "ISideBySide") {
-			System.out.println( this.getSidehandler().getClass());
-			return this.getSidehandler();
-		}
-		return null;
+	private ServiceInterface getRightHandler(Class service) {
+		System.out.println(service.getSimpleName());
+		if (service.getSimpleName().toString().equalsIgnoreCase("IAvailableseat"))
+			return (IAvailableseat) Proxy.newProxyInstance(IAvailableseat.class.getClassLoader(),new Class[] {IAvailableseat.class},this.getAvailhandler());
+		else if (service.getSimpleName().toString().equalsIgnoreCase("ILockerSeat"))
+			return (ILockerSeat) Proxy.newProxyInstance(ILockerSeat.class.getClassLoader(),new Class[] {ILockerSeat.class},this.getLockhandler());
+		else
+			return (ISideBySide) Proxy.newProxyInstance(ISideBySide.class.getClassLoader(),new Class[] {ISideBySide.class},this.getSidehandler());
 	}
 
 	public void commit() {

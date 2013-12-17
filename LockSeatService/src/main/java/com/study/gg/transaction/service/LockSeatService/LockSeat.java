@@ -14,10 +14,11 @@ public class LockSeat extends UnicastRemoteObject implements ILockerSeat{
 	public ArrayList<Seat> lockseats(ArrayList<Seat> seats)
 			throws RemoteException {
 		System.out.println("Catch Req SideBySide");
-		/*for ( Seat s: seats) {
+		for ( Seat s: seats) {
 			s.LockerUnLocker();
 		}
-		return seats;*/return null;
+		return seats;
+		//return null;
 	}
 
 
