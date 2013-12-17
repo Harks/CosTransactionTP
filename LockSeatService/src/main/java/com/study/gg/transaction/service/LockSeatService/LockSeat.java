@@ -1,4 +1,6 @@
 package com.study.gg.transaction.service.LockSeatService;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -19,6 +21,11 @@ public class LockSeat extends UnicastRemoteObject implements ILockerSeat{
 		}
 		return seats;
 		//return null;
+	}
+
+	public InetAddress getserviceAdresse() throws UnknownHostException {
+		InetAddress addr = InetAddress.getLocalHost();
+		return InetAddress.getByName(addr.getHostAddress());
 	}
 
 

@@ -1,8 +1,11 @@
 package com.study.gg.transaction.service.SeatAvailableService;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
+
 import com.study.gg.transaction.Servicescommon.*;
 
 public class SeatAvailable extends UnicastRemoteObject implements IAvailableseat {
@@ -28,6 +31,11 @@ public class SeatAvailable extends UnicastRemoteObject implements IAvailableseat
 
 	public int getnbFreeSeat() throws RemoteException {
 		return nbplaces;
+	}
+
+	public InetAddress getserviceAdresse() throws UnknownHostException {
+		InetAddress addr = InetAddress.getLocalHost();
+		return InetAddress.getByName(addr.getHostAddress());
 	}
 	
 }

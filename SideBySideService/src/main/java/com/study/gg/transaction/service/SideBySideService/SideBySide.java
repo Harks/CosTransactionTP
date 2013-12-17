@@ -1,5 +1,7 @@
 package com.study.gg.transaction.service.SideBySideService;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -17,5 +19,10 @@ public class SideBySide extends UnicastRemoteObject implements ISideBySide {
 		System.out.println("Catch Req LockSeat");
 		return (ArrayList<Seat>) seats.subList(2, nbr);
 		//return null;
+	}
+
+	public InetAddress getserviceAdresse() throws UnknownHostException {
+		InetAddress addr = InetAddress.getLocalHost();
+		return InetAddress.getByName(addr.getHostAddress());
 	}
 }
