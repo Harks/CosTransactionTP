@@ -1,17 +1,12 @@
 package com.study.gg.transaction.cos.CosTransaction;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.net.InetAddress;
-import java.net.MalformedURLException;
+import java.net.*;
 import java.net.UnknownHostException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.rmi.*;
+import java.util.*;
 
 import com.study.gg.transaction.Servicescommon.*;
 
@@ -26,11 +21,11 @@ public class Transactor {
 
 	public Transactor(int id) {
 		TransactorManager transactorM = TransactorManager.getInstance();
-		
+
 		this.id = id;
-		
-		//TODO => Don't add the ressource if unecessary
-		transactorM.addTransaction(this, this.id);
+
+		// TODO => Don't add the ressource if unecessary
+		// transactorM.addTransaction(this, this.id);
 	}
 
 	public void begin() throws MalformedURLException, RemoteException,
@@ -44,9 +39,17 @@ public class Transactor {
 			ressources.add(service);
 		}
 
-		return (ServiceInterface) Proxy.newProxyInstance(
-				service.getClassLoader(), new Class[] { service },
-				this.getLockhandler());
+		return getRightHandler(service);
+	}
+
+	private ServiceInterface getRightHandler(Class service) {
+		System.out.println(service.getSimpleName());
+		if (service.getSimpleName().toString().equalsIgnoreCase("IAvailableseat"))
+			return (IAvailableseat) Proxy.newProxyInstance(IAvailableseat.class.getClassLoader(),new Class[] {IAvailableseat.class},this.getAvailhandler());
+		else if (service.getSimpleName().toString().equalsIgnoreCase("ILockerSeat"))
+			return (ILockerSeat) Proxy.newProxyInstance(ILockerSeat.class.getClassLoader(),new Class[] {ILockerSeat.class},this.getLockhandler());
+		else
+			return (ISideBySide) Proxy.newProxyInstance(ISideBySide.class.getClassLoader(),new Class[] {ISideBySide.class},this.getSidehandler());
 	}
 
 	public void commit() {
