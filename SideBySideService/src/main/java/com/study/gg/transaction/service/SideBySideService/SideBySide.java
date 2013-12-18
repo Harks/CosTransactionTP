@@ -17,12 +17,11 @@ public class SideBySide extends UnicastRemoteObject implements ISideBySide {
 	public ArrayList<Seat> getSideBySideseats(ArrayList<Seat> seats, int nbr)
 			throws RemoteException {
 		System.out.println("Catch Req LockSeat");
-		return new ArrayList<Seat>(seats.subList(2, nbr));
+		return new ArrayList<Seat>(seats.subList(1, nbr));
 		//return null;
 	}
 
 	public InetAddress getserviceAdresse() throws UnknownHostException {
-		InetAddress addr = InetAddress.getLocalHost();
-		return InetAddress.getByName(addr.getHostAddress());
+		return InetAddress.getByName(InetAddress.getLocalHost().getHostAddress());
 	}
 }

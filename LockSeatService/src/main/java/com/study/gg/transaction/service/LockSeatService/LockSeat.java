@@ -24,8 +24,7 @@ public class LockSeat extends UnicastRemoteObject implements ILockerSeat{
 	}
 
 	public InetAddress getserviceAdresse() throws UnknownHostException {
-		InetAddress addr = InetAddress.getLocalHost();
-		return InetAddress.getByName(addr.getHostAddress());
+		return InetAddress.getByName(InetAddress.getLocalHost().getHostAddress());
 	}
 
 

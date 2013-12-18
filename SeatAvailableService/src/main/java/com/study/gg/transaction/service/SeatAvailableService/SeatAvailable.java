@@ -34,8 +34,7 @@ public class SeatAvailable extends UnicastRemoteObject implements IAvailableseat
 	}
 
 	public InetAddress getserviceAdresse() throws UnknownHostException {
-		InetAddress addr = InetAddress.getLocalHost();
-		return InetAddress.getByName(addr.getHostAddress());
+		return InetAddress.getByName(InetAddress.getLocalHost().getHostAddress());
 	}
 	
 }
