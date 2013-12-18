@@ -14,11 +14,13 @@ public class ClientProx {
 	public static void main(String[] args) throws RemoteException, MalformedURLException, UnknownHostException, NotBoundException {
 		ArrayList<Seat> myseats;
 		Transactor transac = new Transactor(1);
+		Transactor transac2 = new Transactor(2);
 		transac.begin();
 		IAvailableseat aseat = (IAvailableseat)transac.addRessource(IAvailableseat.class);
 		ISideBySide sides = (ISideBySide)transac.addRessource(ISideBySide.class);
 		ILockerSeat locks = (ILockerSeat)transac.addRessource(ILockerSeat.class);
-		System.out.println(aseat.getserviceAdresse());
+		
+		//System.out.println(aseat.getserviceAdresse());
 		myseats = aseat.getAvailableSeat();
 		System.out.println("After AvailableSeat "+myseats);
 		myseats = sides.getSideBySideseats(myseats, 3);
