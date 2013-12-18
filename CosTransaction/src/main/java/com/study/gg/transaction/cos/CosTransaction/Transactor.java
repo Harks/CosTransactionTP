@@ -11,9 +11,10 @@ import java.util.*;
 import com.study.gg.transaction.Servicescommon.*;
 
 public class Transactor {
-	private LockerSeatHandler lockhandler;
+	/*private LockerSeatHandler lockhandler;
 	private SideBySideHandler sidehandler;
 	private AvailableHandler availhandler;
+	*/
 	private boolean isbeginging = false;
 	private int currentfreeseat, transactnbseataffect;
 	private int id;
@@ -24,8 +25,7 @@ public class Transactor {
 
 		this.id = id;
 
-		// TODO => Don't add the ressource if unecessary
-		 
+		// TODO => Don't add the ressource if unecessary	 
 	}
 
 	public void begin() throws MalformedURLException, RemoteException,
