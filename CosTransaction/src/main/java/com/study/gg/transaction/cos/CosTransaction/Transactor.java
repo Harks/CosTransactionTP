@@ -18,14 +18,14 @@ public class Transactor {
 	private int currentfreeseat, transactnbseataffect;
 	private int id;
 	ArrayList<Class> ressources = new ArrayList<Class>();
-
+	private TransactorManager transactorM;
 	public Transactor(int id) {
-		TransactorManager transactorM = TransactorManager.getInstance();
+		transactorM = TransactorManager.getInstance();
 
 		this.id = id;
 
 		// TODO => Don't add the ressource if unecessary
-		// transactorM.addTransaction(this, this.id);
+		 
 	}
 
 	public void begin() throws MalformedURLException, RemoteException,
@@ -38,7 +38,7 @@ public class Transactor {
 		if (!ressources.contains(service)) {
 			ressources.add(service);
 		}
-
+		transactorM.addTransaction(this, this.id);
 		return getRightHandler(service);
 	}
 
