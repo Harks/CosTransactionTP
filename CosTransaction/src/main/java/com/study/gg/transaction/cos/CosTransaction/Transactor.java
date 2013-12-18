@@ -17,7 +17,7 @@ public class Transactor {
 	private boolean isbeginging = false;
 	private int currentfreeseat, transactnbseataffect;
 	private int id;
-	ArrayList<Class> ressources = new ArrayList<Class>();
+	private ArrayList<Class> ressources = new ArrayList<Class>();
 	private TransactorManager transactorM;
 	public Transactor(int id) {
 		transactorM = TransactorManager.getInstance();
