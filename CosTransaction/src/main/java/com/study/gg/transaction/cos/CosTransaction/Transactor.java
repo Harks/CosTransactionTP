@@ -38,19 +38,10 @@ public class Transactor {
 		if (!ressources.contains(service)) {
 			ressources.add(service);
 		}
-		transactorM.addTransaction(this, this.id);
-		return getRightHandler(service);
+		//transactorM.addTransaction(this, this.id);
+		return TransactorManager.getHandler(service);
 	}
 
-	private ServiceInterface getRightHandler(Class service) {
-		System.out.println(service.getSimpleName());
-		if (service.getSimpleName().toString().equalsIgnoreCase("IAvailableseat"))
-			return (IAvailableseat) Proxy.newProxyInstance(IAvailableseat.class.getClassLoader(),new Class[] {IAvailableseat.class},this.getAvailhandler());
-		else if (service.getSimpleName().toString().equalsIgnoreCase("ILockerSeat"))
-			return (ILockerSeat) Proxy.newProxyInstance(ILockerSeat.class.getClassLoader(),new Class[] {ILockerSeat.class},this.getLockhandler());
-		else
-			return (ISideBySide) Proxy.newProxyInstance(ISideBySide.class.getClassLoader(),new Class[] {ISideBySide.class},this.getSidehandler());
-	}
 
 	public void commit() {
 		if (isbeginging == true) {
@@ -65,18 +56,5 @@ public class Transactor {
 		}
 	}
 
-	public LockerSeatHandler getLockhandler() {
-		lockhandler = new LockerSeatHandler();
-		return lockhandler;
-	}
 
-	public SideBySideHandler getSidehandler() {
-		sidehandler = new SideBySideHandler();
-		return sidehandler;
-	}
-
-	public AvailableHandler getAvailhandler() {
-		availhandler = new AvailableHandler();
-		return availhandler;
-	}
 }
