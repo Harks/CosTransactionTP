@@ -32,6 +32,9 @@ public class ClientProx {
 			System.out.println("RMI Cos OK");
 			IAvailableseat aseat = (IAvailableseat) transac
 					.addRessource(IAvailableseat.class);
+			
+			System.out.println("Aseat => "+aseat);
+			
 			ISideBySide sides = (ISideBySide) transac
 					.addRessource(ISideBySide.class);
 			ILockerSeat locks = (ILockerSeat) transac

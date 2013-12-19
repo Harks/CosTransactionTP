@@ -16,8 +16,7 @@ public class server {
 		} catch (Exception ex) {
 		}
 		IAvailableseat availseat = new SeatAvailable();
-		Naming.rebind("rmi://" + InetAddress.getLocalHost().getHostAddress() + "/SeatAvailable",
-				availseat);
+		Naming.rebind("rmi://" + InetAddress.getLocalHost() + "/IAvailableseat",availseat);
 	}
 
 }

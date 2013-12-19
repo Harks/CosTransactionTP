@@ -39,11 +39,14 @@ public class Transactor extends UnicastRemoteObject implements ITransactor {
 		isbeginging = true;
 	}
 
+
 	public ServiceInterface addRessource(Class service)throws RemoteException {
 
-		if (!ressources.contains(service)) {
+		/*if (!ressources.contains(service)) {
 			ressources.add(service);
-		}
+		}*/
+		System.out.println("service.getCanonicalName() "+service.getCanonicalName());
+		System.out.println("service "+service);
 		return TransactorManager.getHandler(service);
 	}
 

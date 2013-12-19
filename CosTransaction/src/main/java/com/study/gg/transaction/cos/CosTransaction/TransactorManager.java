@@ -1,6 +1,9 @@
 package com.study.gg.transaction.cos.CosTransaction;
 
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,17 +15,15 @@ import com.study.gg.transaction.Servicescommon.ServiceInterface;
 
 public class TransactorManager {
 
-	private Map<Integer,ArrayList<Transactor>> transactions;
+	private Map<Integer,ArrayList<Transactor>> transactions = new HashMap<Integer,ArrayList<Transactor>>();
+	static Map<Class,GenericHandler> proxyRessources = new HashMap<Class, GenericHandler>();
 	static private TransactorManager manager;
-	static LockerSeatHandler lockhandler;
-	static SideBySideHandler sidehandler;
-	static AvailableHandler availhandler;
-	static IAvailableseat available;
-	static ILockerSeat lock;
-	static ISideBySide side;
+	static GenericHandler handler;
+
 	
 	private TransactorManager(){
-		this.transactions = new HashMap<Integer,ArrayList<Transactor>>();
+		/*this.transactions = new HashMap<Integer,ArrayList<Transactor>>();
+		this.proxyRessources = new HashMap<Class, GenericHandler>();*/
 	}
 	
 	public void addTransaction(Transactor transaction, int id){
@@ -40,43 +41,29 @@ public class TransactorManager {
 		return transactions;
 	}
 	
-	static ServiceInterface getHandler(Class service){
-		System.out.println(service.getSimpleName());
-		if (service.getSimpleName().toString().equalsIgnoreCase("IAvailableseat")){
-			if(availhandler == null){
-				available = (IAvailableseat) Proxy.newProxyInstance(IAvailableseat.class.getClassLoader(),new Class[] {IAvailableseat.class},TransactorManager.getAvailhandler());
-			}
-			return available;
-		}
-		else if (service.getSimpleName().toString().equalsIgnoreCase("ILockerSeat")){
-			if(lock == null ){
-				lock = (ILockerSeat) Proxy.newProxyInstance(ILockerSeat.class.getClassLoader(),new Class[] {ILockerSeat.class},TransactorManager.getLockhandler());
-			}
-			return lock;
-		}
-		else if(service.getSimpleName().toString().equalsIgnoreCase("ISideBySide")) {
-			if(side == null){
-				side = (ISideBySide) Proxy.newProxyInstance(ISideBySide.class.getClassLoader(),new Class[] {ISideBySide.class},TransactorManager.getSidehandler());
-			}
-			return side;
-		}else {
-			return null;
-		}
+	static ServiceInterface getHandler(Class<ServiceInterface> service){
+
+		return (ServiceInterface)(Proxy.newProxyInstance(service.getClassLoader(),new Class[] {service},TransactorManager.callHandler(service)));
+		
 	}
 	
-	static LockerSeatHandler getLockhandler() {
-		lockhandler = new LockerSeatHandler();
-		return lockhandler;
+	static InvocationHandler callHandler(Class service){
+		
+		System.out.println("callHandler Service Name => "+service);
+		System.out.println("ProxyRessource => "+proxyRessources.toString());
+		
+		if(proxyRessources.containsKey(service)){
+			return proxyRessources.get(service);
+		}else {
+			GenericHandler handler;
+			//handler = new GenericHandler(service, InetAddress.getByName("192.167.0.1"));
+			handler = new GenericHandler(service,null);
+			proxyRessources.put(service, handler);
+			return handler;
+			//return null;
+		}
 	}
 
-	static SideBySideHandler getSidehandler() {
-		sidehandler = new SideBySideHandler();
-		return sidehandler;
-	}
-
-	static AvailableHandler getAvailhandler() {
-		availhandler = new AvailableHandler();
-		return availhandler;
-	}
+	
 
 }
