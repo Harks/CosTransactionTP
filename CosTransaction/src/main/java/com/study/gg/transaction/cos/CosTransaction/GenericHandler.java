@@ -13,8 +13,8 @@ import com.study.gg.transaction.Servicescommon.ServiceInterface;
 public class GenericHandler implements InvocationHandler,Serializable{
 
 	private Class serviceInt;
-	private InetAddress address;
-	public GenericHandler(Class serviceI, InetAddress address){
+	private String address;
+	public GenericHandler(Class serviceI, String address){
 		this.serviceInt = serviceI;
 		this.address = address;
 	}

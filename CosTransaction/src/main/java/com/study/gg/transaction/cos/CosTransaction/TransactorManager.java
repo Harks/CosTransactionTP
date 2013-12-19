@@ -40,17 +40,11 @@ public class TransactorManager {
 	
 	static ServiceInterface getHandler(Class<ServiceInterface> service,String address){
 
-		try {
-			return (ServiceInterface)(Proxy.newProxyInstance(service.getClassLoader(),new Class[] {service},TransactorManager.callHandler(service,InetAddress.getByName(address))));
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		return null;	
+			return (ServiceInterface)(Proxy.newProxyInstance(service.getClassLoader(),new Class[] {service},TransactorManager.callHandler(service,address)));
+
 	}
 	
-	static InvocationHandler callHandler(Class service,InetAddress address){
+	static InvocationHandler callHandler(Class service,String address){
 		
 		if(proxyRessources.containsKey(service)){
 			return proxyRessources.get(service);
