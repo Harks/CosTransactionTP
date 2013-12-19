@@ -18,6 +18,7 @@ public class TransactorRMIServer {
 		} catch (Exception ex) {
 		}
 		ITransactor itransac = new Transactor();
+		System.out.println("adresse cos = "+InetAddress.getLocalHost().getHostAddress());
 		Naming.rebind("rmi://" + InetAddress.getLocalHost().getHostAddress() + "/Transactor",
 				itransac);
 	}
