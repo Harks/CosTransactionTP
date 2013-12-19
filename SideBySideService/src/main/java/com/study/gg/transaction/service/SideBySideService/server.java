@@ -16,7 +16,7 @@ public class server {
 		} catch (Exception ex) {
 		}
 		ISideBySide sideseat = new SideBySide();
-		Naming.rebind("rmi://" + InetAddress.getLocalHost() + "/SideBySide",
+		Naming.rebind("rmi://" + InetAddress.getLocalHost().getHostAddress() + "/SideBySide",
 				sideseat);
 	}
 

@@ -1,5 +1,7 @@
 package com.study.gg.transaction.cos.CosTransaction;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -21,14 +23,17 @@ public class Transactor extends UnicastRemoteObject implements ITransactor {
 	private int id;
 	private ArrayList<Class> ressources = new ArrayList<Class>();
 	private TransactorManager transactorM;
-	public Transactor(int id) throws RemoteException{
+	public Transactor(int id) throws FileNotFoundException, UnknownHostException, IOException{
 		transactorM = TransactorManager.getInstance();
-
+		//PropertiesNetwork.setTransacAddresse(this.getserviceAdresse().toString());
 		this.id = id;
 
 		// TODO => Don't add the ressource if unecessary	 
 	}
-	public Transactor()throws RemoteException {}
+	public Transactor()throws FileNotFoundException, UnknownHostException, IOException
+	{
+		//PropertiesNetwork.setTransacAddresse(this.getserviceAdresse().toString());
+	}
 	public void begin() throws MalformedURLException, RemoteException,
 			UnknownHostException, NotBoundException {
 		isbeginging = true;
