@@ -1,21 +1,21 @@
 package com.study.gg.transaction.Client;
 import java.lang.reflect.Proxy;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
+import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
 import com.study.gg.transaction.Servicescommon.*;
-import com.study.gg.transaction.cos.CosTransaction.Transactor;
 
 public class ClientProx {
 
 	public static void main(String[] args) throws RemoteException, MalformedURLException, UnknownHostException, NotBoundException {
 		ArrayList<Seat> myseats;
 		ArrayList<Seat> myseats2;
-		Transactor transac = new Transactor(1);
-		Transactor transac2 = new Transactor(2);
+		ITransactor transac = (ITransactor) Naming.lookup("rmi://"+InetAddress.getLocalHost()+"/Transactor");//new Transactor(1);
+		ITransactor transac2 = (ITransactor) Naming.lookup("rmi://"+InetAddress.getLocalHost()+"/Transactor"); //new Transactor(2);
 		transac.begin();
 		IAvailableseat aseat = (IAvailableseat)transac.addRessource(IAvailableseat.class);
 		ISideBySide sides = (ISideBySide)transac.addRessource(ISideBySide.class);
