@@ -47,7 +47,6 @@ public class ClientProx {
 			ILockerSeat locks2 = (ILockerSeat) transac2
 					.addRessource(ILockerSeat.class);
 
-			// System.out.println(aseat.getserviceAdresse());
 			myseats = aseat.getAvailableSeat();
 			System.out.println("After AvailableSeat " + myseats);
 			myseats2 = aseat2.getAvailableSeat();

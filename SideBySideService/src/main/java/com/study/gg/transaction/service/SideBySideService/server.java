@@ -17,6 +17,7 @@ public class server {
 		}
 		ISideBySide sideseat = new SideBySide();
 		Naming.rebind("rmi://" + InetAddress.getLocalHost() + "/ISideBySide",sideseat);
+		System.out.println("RMI SideBySide Service started");
 	}
 
 }

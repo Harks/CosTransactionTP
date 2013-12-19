@@ -14,26 +14,18 @@ import java.util.*;
 import com.study.gg.transaction.Servicescommon.*;
 
 public class Transactor extends UnicastRemoteObject implements ITransactor {
-	/*private LockerSeatHandler lockhandler;
-	private SideBySideHandler sidehandler;
-	private AvailableHandler availhandler;
-	*/
+	
 	private boolean isbeginging = false;
 	private int currentfreeseat, transactnbseataffect;
 	private int id;
-	private ArrayList<Class> ressources = new ArrayList<Class>();
-	private TransactorManager transactorM;
+	
 	public Transactor(int id) throws FileNotFoundException, UnknownHostException, IOException{
-		transactorM = TransactorManager.getInstance();
-		//PropertiesNetwork.setTransacAddresse(this.getserviceAdresse().toString());
-		this.id = id;
-
-		// TODO => Don't add the ressource if unecessary	 
+		TransactorManager.getInstance();
+		this.id = id; 
 	}
 	public Transactor()throws FileNotFoundException, UnknownHostException, IOException
-	{
-		//PropertiesNetwork.setTransacAddresse(this.getserviceAdresse().toString());
-	}
+	{}
+	
 	public void begin() throws MalformedURLException, RemoteException,
 			UnknownHostException, NotBoundException {
 		isbeginging = true;
@@ -41,12 +33,6 @@ public class Transactor extends UnicastRemoteObject implements ITransactor {
 
 
 	public ServiceInterface addRessource(Class service)throws RemoteException {
-
-		/*if (!ressources.contains(service)) {
-			ressources.add(service);
-		}*/
-		System.out.println("service.getCanonicalName() "+service.getCanonicalName());
-		System.out.println("service "+service);
 		return TransactorManager.getHandler(service);
 	}
 
@@ -67,6 +53,5 @@ public class Transactor extends UnicastRemoteObject implements ITransactor {
 			RemoteException {
 		return InetAddress.getByName(InetAddress.getLocalHost().getHostAddress());
 	}
-
 
 }

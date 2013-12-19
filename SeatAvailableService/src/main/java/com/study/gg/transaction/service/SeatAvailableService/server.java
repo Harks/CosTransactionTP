@@ -17,6 +17,7 @@ public class server {
 		}
 		IAvailableseat availseat = new SeatAvailable();
 		Naming.rebind("rmi://" + InetAddress.getLocalHost() + "/IAvailableseat",availseat);
+		System.out.println("RMI SeatAvailable Service started");
 	}
 
 }

@@ -4,4 +4,4 @@ if [ -d "$dir" ]; then
   cd "$dir"
 fi
 
-java -cp SideBySideService-0.0.1-SNAPSHOT.jar com.study.gg.transaction.service.SideBySideService.server;
+java -cp SideBySideService/target/uber-SideBySideService-0.0.1-SNAPSHOT.jar com.study.gg.transaction.service.SideBySideService.server;

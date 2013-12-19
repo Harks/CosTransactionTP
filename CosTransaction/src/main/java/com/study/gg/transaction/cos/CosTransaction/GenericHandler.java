@@ -13,18 +13,16 @@ import com.study.gg.transaction.Servicescommon.ServiceInterface;
 public class GenericHandler implements InvocationHandler,Serializable{
 
 	private Class serviceInt;
-	public GenericHandler(Class serviceI,InetAddress address){
+	public GenericHandler(Class serviceI){
 		this.serviceInt = serviceI;
 	}
 	
 	public Object invoke(Object arg0, Method arg1, Object[] arg2)
 			throws Throwable {
 		
-		System.out.println("Class in invoke => "+serviceInt.getName());
-		
+		System.out.println("Client Call, service =  "+serviceInt.getName());
 		Remote r = Naming.lookup("rmi://"+InetAddress.getLocalHost()+"/"+serviceInt.getSimpleName());
 		return arg1.invoke((serviceInt.cast(r)), arg2);
-		
 	}
 	
 }

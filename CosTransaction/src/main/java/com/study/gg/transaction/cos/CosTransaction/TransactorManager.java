@@ -21,10 +21,7 @@ public class TransactorManager {
 	static GenericHandler handler;
 
 	
-	private TransactorManager(){
-		/*this.transactions = new HashMap<Integer,ArrayList<Transactor>>();
-		this.proxyRessources = new HashMap<Class, GenericHandler>();*/
-	}
+	private TransactorManager(){}
 	
 	public void addTransaction(Transactor transaction, int id){
 		transactions.get(id).add(transaction);
@@ -49,18 +46,13 @@ public class TransactorManager {
 	
 	static InvocationHandler callHandler(Class service){
 		
-		System.out.println("callHandler Service Name => "+service);
-		System.out.println("ProxyRessource => "+proxyRessources.toString());
-		
 		if(proxyRessources.containsKey(service)){
 			return proxyRessources.get(service);
 		}else {
 			GenericHandler handler;
-			//handler = new GenericHandler(service, InetAddress.getByName("192.167.0.1"));
-			handler = new GenericHandler(service,null);
+			handler = new GenericHandler(service);
 			proxyRessources.put(service, handler);
 			return handler;
-			//return null;
 		}
 	}
 
