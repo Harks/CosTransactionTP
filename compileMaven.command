@@ -11,6 +11,10 @@ cd Client;
 cp target/Client-0.0.1-SNAPSHOT.jar ../Client-0.0.1-SNAPSHOT.jar;
 cd ..;
 
+cd CosTransaction;
+cp target/CosTransaction-0.0.1-SNAPSHOT.jar ../CosTransactionClient-0.0.1-SNAPSHOT.jar;
+cd ..;
+
 cd Services-common;
 cp target/Services-common-0.0.1-SNAPSHOT.jar ../Services-common-0.0.1-SNAPSHOT.jar;
 
