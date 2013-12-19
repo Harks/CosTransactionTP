@@ -33,7 +33,7 @@ public class ClientProx {
 			IAvailableseat aseat = (IAvailableseat) transac
 					.addRessource(IAvailableseat.class);
 			
-			System.out.println("Aseat => "+aseat);
+			//System.out.println("Aseat => "+aseat);
 			
 			ISideBySide sides = (ISideBySide) transac
 					.addRessource(ISideBySide.class);

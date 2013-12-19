@@ -16,7 +16,7 @@ public class server {
 		} catch (Exception ex) {
 		}
 		ILockerSeat lockerseat = new LockSeat();
-		Naming.rebind("rmi://" + InetAddress.getLocalHost() + "/ILockerSeat",lockerseat);
+		Naming.rebind("rmi://" + InetAddress.getLocalHost().getHostAddress()  + "/ILockerSeat",lockerseat);
 		System.out.println("RMI LockSeat Service started");
 	}
 
