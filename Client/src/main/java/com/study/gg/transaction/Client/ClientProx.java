@@ -31,21 +31,21 @@ public class ClientProx {
 			transac.begin();
 			System.out.println("RMI Cos OK");
 			IAvailableseat aseat = (IAvailableseat) transac
-					.addRessource(IAvailableseat.class);
+					.addRessource(IAvailableseat.class,args[0]);
 			
 			//System.out.println("Aseat => "+aseat);
 			
 			ISideBySide sides = (ISideBySide) transac
-					.addRessource(ISideBySide.class);
+					.addRessource(ISideBySide.class,args[0]);
 			ILockerSeat locks = (ILockerSeat) transac
-					.addRessource(ILockerSeat.class);
+					.addRessource(ILockerSeat.class,args[0]);
 
 			IAvailableseat aseat2 = (IAvailableseat) transac2
-					.addRessource(IAvailableseat.class);
+					.addRessource(IAvailableseat.class,args[0]);
 			ISideBySide sides2 = (ISideBySide) transac2
-					.addRessource(ISideBySide.class);
+					.addRessource(ISideBySide.class,args[0]);
 			ILockerSeat locks2 = (ILockerSeat) transac2
-					.addRessource(ILockerSeat.class);
+					.addRessource(ILockerSeat.class,args[0]);
 
 			myseats = aseat.getAvailableSeat();
 			System.out.println("After AvailableSeat " + myseats);

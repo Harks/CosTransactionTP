@@ -38,19 +38,25 @@ public class TransactorManager {
 		return transactions;
 	}
 	
-	static ServiceInterface getHandler(Class<ServiceInterface> service){
+	static ServiceInterface getHandler(Class<ServiceInterface> service,String address){
 
-		return (ServiceInterface)(Proxy.newProxyInstance(service.getClassLoader(),new Class[] {service},TransactorManager.callHandler(service)));
-		
+		try {
+			return (ServiceInterface)(Proxy.newProxyInstance(service.getClassLoader(),new Class[] {service},TransactorManager.callHandler(service,InetAddress.getByName(address))));
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return null;	
 	}
 	
-	static InvocationHandler callHandler(Class service){
+	static InvocationHandler callHandler(Class service,InetAddress address){
 		
 		if(proxyRessources.containsKey(service)){
 			return proxyRessources.get(service);
 		}else {
 			GenericHandler handler;
-			handler = new GenericHandler(service);
+			handler = new GenericHandler(service,address);
 			proxyRessources.put(service, handler);
 			return handler;
 		}

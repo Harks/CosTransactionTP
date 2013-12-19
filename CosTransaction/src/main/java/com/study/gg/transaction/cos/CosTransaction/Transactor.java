@@ -32,8 +32,8 @@ public class Transactor extends UnicastRemoteObject implements ITransactor {
 	}
 
 
-	public ServiceInterface addRessource(Class service)throws RemoteException {
-		return TransactorManager.getHandler(service);
+	public ServiceInterface addRessource(Class service,String address)throws RemoteException {
+		return TransactorManager.getHandler(service,address);
 	}
 
 
